@@ -10,7 +10,9 @@ phases:
       - wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
       - dpkg -i google-chrome*.deb
   pre_build:
-    commands:
+    commands: 
+      # - npm i aws-sdk
+      # - aws codeartifact login --tool npm --repository AngularNodeModule --domain angular-ci-lib --domain-owner 756430146363 
       - npm install
       - npm run test:ci
   build:
@@ -20,11 +22,8 @@ phases:
   #   commands:
   #     - aws s3 sync ./dist/angular-devops s3://angular-devops-production --acl 'public-read' --delete
 
+# 成品檔案位置(build的結果)
 artifacts:
   files:
-    - '**/*.html'
-    - '**/*.js'
-    - '**/*.css'
-    - '**/*.ico'
-  discard-paths: yes
-  base-directory: 'dist/angular-devops'
+    - '**/*'
+  base-directory: 'dist/TestCI'
